@@ -1,0 +1,31 @@
+.users{
+  display: flex;
+  align-items: center;
+
+  p{
+    color: #fff;
+  }
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.wrapper {
+  border-bottom: 10px solid #e0e0e0;
+  flex: 1;
+}
+
+.side-bar {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 350px;
+  border-left: 1px solid black;
+}
+
+.confirm{
+  padding: 16px;
+  border-bottom: 1px solid #cecece;
+}

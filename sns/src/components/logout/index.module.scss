@@ -11,9 +11,13 @@
 
 .logo{
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   p{
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     color: #fff;
     margin: 0 auto;
@@ -21,8 +25,9 @@
 }
 
 .img{
-  width: 150px;
+  width: 180px;
   height: auto;
+  margin: 0 auto
 }
 
 .wrapper{
@@ -30,4 +35,16 @@
   background-color: rgba(0, 0, 0, 0.2);
   padding: 1em;
   border-radius: 10px;
+  margin: 50px;
+  text-align: center;
+}
+
+.wrapper form{
+  text-align: left;
+}
+
+.wrapper a{
+  color: #fff;
+  display: inline-block;
+  margin: 2rem 0 1rem 0;
 }

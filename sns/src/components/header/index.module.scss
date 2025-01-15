@@ -1,0 +1,20 @@
+.header {
+  width: 100vw; //vw：画面（viewport）の幅に対する範囲を指定。親要素は関係ない。
+  height: 100px;
+  background-color: #0067c6;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.img {
+  width: 120px;
+  height: auto;
+  margin-left: 1.5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: right;
+}

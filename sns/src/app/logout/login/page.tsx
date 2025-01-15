@@ -1,36 +1,30 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Logout, FormItem, TextField, Button } from "@/components";
+import { useEffect, useState } from "react";
+import { Logout, FormItem, SectionTitle, TextField, Button } from "@/components";
 
+// メールアドレスとパスワードの状態を管理するカスタムフック
 function useCredentials() {
-  const [text, setText] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  return { text, setText, email, setEmail, password, setPassword };
+  return { email, setEmail, password, setPassword };
 }
 
 export default function Page() {
-  const { text, setText, email, setEmail, password, setPassword } = useCredentials();
+  const { email, setEmail, password, setPassword } = useCredentials();
 
+  // ページマウント時にメールアドレスとパスワードをクリア
   useEffect(() => {
-    setText("");
-    setEmail("")
+    setEmail("");
     setPassword("");
-  }, [setText, setEmail, setPassword]);
+  }, [setEmail, setPassword]);
 
   return (
     <div>
       <Logout>
-        <h1>新規ユーザー登録</h1>
+        <SectionTitle>AtlasSNSへようこそ</SectionTitle>
         <form>
-          <FormItem label="ユーザー名">
-            <TextField
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-            />
-          </FormItem>
           <FormItem label="メールアドレス">
             <TextField
               value={email}
@@ -44,9 +38,9 @@ export default function Page() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </FormItem>
-          <Button type="submit">新規登録</Button>
+          <Button type="submit">ログイン</Button>
         </form>
-        <Link href="/login">ログイン画面に戻る</Link>
+        <Link href="/logout/register">新規ユーザーの方はこちら</Link>
       </Logout>
     </div>
   );

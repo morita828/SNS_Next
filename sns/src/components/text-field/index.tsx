@@ -1,4 +1,5 @@
 import React, { forwardRef } from "react";
+import styles from "./index.module.scss";
 
 type TextFieldProps = {
     type?: "text" | "email" | "url" | "search" | "password";
@@ -16,6 +17,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
                 value={value}
                 placeholder={placeholder}
                 onChange={onChange}
+                className={styles.textField}
                 {...props}
             />
         );
