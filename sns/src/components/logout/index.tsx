@@ -17,7 +17,7 @@ export const Logout: React.FC<LogoutProps> = ({children}) => {
         alt="Atlas"
         priority
       />
-      <p>Social Network Service</p>
+      <h2>Social Network Service</h2>
       </div>
       <div className={styles.wrapper}>
         {children}
