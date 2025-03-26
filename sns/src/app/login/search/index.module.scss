@@ -1,7 +1,6 @@
 .users{
   display: flex;
   align-items: center;
-  gap: 10px;
 
   p{
     color: #fff;
@@ -33,6 +32,23 @@
   display: flex;
   margin-left: 90px;
   width: 75%;
+}
+
+//検索ボックス
+.searchBox {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 20px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+
+  &:focus {
+    border-color: #1779d6;
+    box-shadow: 0 0 5px rgba(23, 121, 214, 0.5);
+  }
 }
 
 .image-button{

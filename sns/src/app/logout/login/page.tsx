@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Logout, FormItem, SectionTitle, TextField, Button } from "@/components";
+import styles from "./index.module.scss";
 
 // メールアドレスとパスワードの状態を管理するカスタムフック
 function useCredentials() {
@@ -40,7 +41,9 @@ export default function Page() {
           </FormItem>
           <Button type="submit">ログイン</Button>
         </form>
-        <Link href="/logout/register">新規ユーザーの方はこちら</Link>
+        <div className={styles.link}>
+          <Link href="/logout/register">新規ユーザーの方はこちら</Link>
+        </div>
       </Logout>
     </div>
   );

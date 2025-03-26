@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
+import Link from "next/link";
 
-import { Header, Button, PostForm } from "@/components";
+import { Header, SideMenu, Button, PostForm } from "@/components";
 
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
             <Header>
                 <div className={styles.users}>
                     <p>〇〇さん</p>
+                    <SideMenu />
                     <Image
                         src="/images/icon1.png"
                         width={55}
@@ -22,8 +24,8 @@ export default function Page() {
             </Header>
             <div className={styles.row}>
                 <div className={styles.contents}>
-                    <div className={styles["post-wrapper"]}>
-                        <div className={styles["post-inner"]}>
+                    <div className={styles["wrapper"]}>
+                        <div className={styles["inner"]}>
                             <Image
                                 src="/images/icon1.png"
                                 width={50}
@@ -33,18 +35,31 @@ export default function Page() {
                                 priority
                             />
                             <PostForm />
-                            <Image
-                                src="/images/post.png"
-                                width={50}
-                                height={50}
-                                alt="post-icon"
-                                style={{ width: "50px", height: "50px", borderRadius: "10%" }}
-                                priority
-                            />
+                            <button className={styles["image-button"]}>
+                                <Image
+                                    src="/images/post.png"
+                                    width={58}
+                                    height={50}
+                                    alt="post-icon"
+                                    style={{ width: "58px", height: "50px", borderRadius: "10%" }}
+                                    priority
+                                />
+                            </button>
                         </div>
                     </div>
                     <div className={styles["post-item"]}>
-                        <p>投稿内容表示エリア</p>
+                        <Image
+                            src="/images/icon1.png"
+                            width={50}
+                            height={50}
+                            alt="icon"
+                            style={{ width: "50px", height: "50px" }}
+                            priority
+                        />
+                        <div className={styles["post-detail"]}>
+                            <p>ユーザー名</p>
+                            <p>自分が投稿した内容</p>
+                        </div>
                     </div>
                 </div>
                 <div className={styles["side-bar"]}>
@@ -54,15 +69,21 @@ export default function Page() {
                             <p>フォロー数</p>
                             <p>〇〇人</p>
                         </div>
-                        <Button color="blue">フォローリスト</Button>
+                        <Button color="blue">
+                            <Link href="/login/follow-list">フォローリスト</Link>
+                        </Button>
                         <div className={styles.section}>
                             <p>フォロワー数</p>
                             <p>〇〇人</p>
                         </div>
-                        <Button color="blue">フォロワーリスト</Button>
+                        <Button color="blue">
+                            <Link href="/login/follower-list">フォロワーリスト</Link>
+                        </Button>
                     </div>
                     <div className={styles["search-button"]}>
-                        <Button color="blue">ユーザー検索</Button>
+                        <Button color="blue">
+                            <Link href="/login/search">ユーザー検索</Link>
+                        </Button>
                     </div>
                 </div>
             </div>

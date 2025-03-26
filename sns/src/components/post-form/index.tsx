@@ -19,7 +19,6 @@ export const PostForm: React.FC<PostFormProps> = ({
   };
 
   return (
-    <div className={styles.wrapper}>
       <textarea
         className={styles.textarea}
         placeholder={placeholder}
@@ -27,6 +26,5 @@ export const PostForm: React.FC<PostFormProps> = ({
         onChange={handleChange}
         maxLength={maxLength}
       />
-    </div>
   );
 };

@@ -18,8 +18,8 @@ model users {
   username   String   @db.VarChar(255)
   mail       String   @db.VarChar(255) @unique
   password   String   @db.VarChar(255)
-  bio        String   @db.VarChar(400)
-  images     String   @db.VarChar(255)
+  bio        String?  @db.VarChar(400)
+  images     String?  @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
