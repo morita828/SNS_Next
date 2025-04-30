@@ -22,4 +22,40 @@ model users {
   images     String?  @db.VarChar(255)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  // ✅ users ⇄ posts（1:N）
+  posts      posts[]
+
+  // ✅ users ⇄ follows（1:N）
+  following  follows[] @relation("FollowingRelation")
+  followedBy follows[] @relation("FollowedRelation")
+}
+
+model posts {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  post       String   @db.VarChar(400)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  // ✅ users テーブルと関連付け（user_id を参照）
+  user       users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  @@index([user_id])
+}
+
+model follows {
+  id           Int      @id @default(autoincrement())
+  following_id Int
+  followed_id  Int
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+
+  // ✅ `users.id` に外部キーを設定（`fields` & `references` を指定）
+  follower users @relation("FollowingRelation", fields: [following_id], references: [id], onDelete: Cascade)
+  followed users @relation("FollowedRelation", fields: [followed_id], references: [id], onDelete: Cascade)
+
+  // ✅ インデックス & 重複防止
+  @@index([following_id])
+  @@index([followed_id])
+  @@unique([following_id, followed_id])
 }
