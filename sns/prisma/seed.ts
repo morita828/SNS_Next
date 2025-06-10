@@ -10,7 +10,6 @@ async function main() {
       images: "icon1.png",
     },
   });
-  console.log("ユーザー作成完了:", newUser);
 }
 
 main()

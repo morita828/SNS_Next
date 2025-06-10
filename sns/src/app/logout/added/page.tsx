@@ -4,21 +4,27 @@ import { Logout, Button } from "@/components";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./index.module.scss";
+import { useEffect, useState } from "react";
 
 
 export default function Page() {
   const router = useRouter();
+  const [userName, setUserName] = useState<string | null>(null);
 
-  // ボタンのクリックで /login に遷移
-  const handleLoginRedirect = () => {
-    router.push("/login");
-  };
+  useEffect(() => {
+  const storedUserName = localStorage.getItem("registeredUserName");
+  console.log("登録済みユーザー名:", storedUserName);
+  setUserName(storedUserName);
+  setTimeout(() => {
+    localStorage.removeItem("registeredUserName");
+  }, 3000);
+}, []);
 
   return (
     <Logout>
       <div className={styles.container}>
         <div className={styles.username}>
-          <h2>ユーザー名さん</h2>
+          <h2>{userName}さん</h2>
          <h2>ようこそ！AtlasSNSへ</h2>
         </div>
         <div className={styles.content}>

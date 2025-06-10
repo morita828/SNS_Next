@@ -30,7 +30,12 @@ export default function Page() {
         return;
       }
 
-      router.push("/logout/added");
+      localStorage.setItem("registeredUserName", data.userName);
+
+      setTimeout(() => {
+        router.push("/logout/added");
+      }, 500);
+
     } catch (error) {
       console.error("登録エラー:", error);
       alert("登録に失敗しました。もう一度お試しください。");

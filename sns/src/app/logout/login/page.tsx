@@ -3,7 +3,7 @@
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { signIn } from "next-auth/react"; // 追加 ✅
+import { signIn } from "next-auth/react";
 import { Logout, FormItem, SectionTitle, TextField, Button } from "@/components";
 import styles from "./index.module.scss";
 
@@ -23,6 +23,11 @@ export default function Page() {
         email: data.email,
         password: data.password,
       });
+
+      if (result?.ok) {
+        router.push("/login/top");
+        return;
+      }
 
       if (result?.error) {
         if (result.error === "メールアドレスが見つかりません") {

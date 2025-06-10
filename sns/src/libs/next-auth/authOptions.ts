@@ -1,7 +1,8 @@
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { randomUUID, randomBytes } from 'crypto'
+import { AuthOptions } from 'next-auth'
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   /* providers */
   providers: [
     // ユーザ用認証
@@ -21,7 +22,7 @@ export const authOptions = {
           }
         })
 
-        const user = res.json()
+        const user = await res.json()
 
         if (res.ok && user) {
           return user
@@ -34,6 +35,20 @@ export const authOptions = {
 
   /* callbacks */
   callbacks: {
+    async jwt({ token, user }) {
+    // 初回ログイン時のみ user が存在する
+    if (user) {
+      token.id = user.id
+      }
+      return token
+    },
+    async session({ session, token }) {
+      if (token?.id) {
+        session.user = session.user ?? {};
+        session.user.id = token.id as number;
+      }
+      return session
+    }
   },
 
   /* secret */
@@ -41,13 +56,13 @@ export const authOptions = {
 
   /* jwt */
   jwt: {
-    maxAge: 3 * 24 * 60 * 60,       // 3 days
+    maxAge: 120 * 60,
   },
 
   /* session */
   session: {
-    maxAge: 30 * 24 * 60 * 60,      // 30 days
-    updateAge: 24 * 60 * 60,        // 24 hours
+    maxAge: 120 * 60,      // 120分（2時間）でセッションが無効に
+    updateAge: 24 * 60 * 60,        // 24時間
     generateSessionToken: () => {
       return randomUUID?.() ?? randomBytes(32).toString("hex")
     }

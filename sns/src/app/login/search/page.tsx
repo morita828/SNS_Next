@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+
 import { Header, Button } from "@/components";
 
 export default function Page() {
@@ -15,18 +16,7 @@ export default function Page() {
 
   return (
     <div>
-      <Header>
-        <div className={styles.users}>
-          <p>〇〇さん</p>
-          <Image
-            src="/images/icon1.png"
-            width={55}
-            height={55}
-            alt="icon"
-            priority
-          />
-        </div>
-      </Header>
+      <Header />
       <div className={styles.row}>
         <div className={styles.contents}>
           <div className={styles.wrapper}>

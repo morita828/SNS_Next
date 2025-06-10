@@ -2,26 +2,23 @@ import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/next-auth/authOptions";
+import { redirect } from "next/navigation";
 
 import { Header, Button } from "@/components";
 
 
-export default function Page() {
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) {
+    redirect("/logout/login");
+  }
+
   return (
     <div>
-      <Header>
-        <div className={styles.users}>
-          <p>〇〇さん</p>
-          <Image
-            src="/images/icon1.png"
-            width={55}
-            height={55}
-            alt="icon"
-            priority
-          />
-        </div>
-      </Header>
+      <Header />
       <div className={styles.row}>
         <div className={styles.contents}>
           <div className={styles["wrapper"]}>

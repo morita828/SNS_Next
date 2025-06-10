@@ -45,3 +45,12 @@
   transform: translateY(0);
   pointer-events: auto;
 }
+
+.logoutButton {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
