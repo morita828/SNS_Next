@@ -1,3 +1,4 @@
+export { Post } from "./post"
 export { Button } from "./button"
 export { FormItem } from "./form-item"
 export { Header } from "./header"

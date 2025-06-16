@@ -1,9 +1,37 @@
-.textarea{
+.form {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.inputArea {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 10px;
+  margin: 0 1rem;
+}
+
+.textarea{
+  flex: 1;
   height: 130px;
   padding: 10px;
-  margin: 0 1rem;
   font-size: 18px;
   resize: none;
   overflow: scroll;
+}
+
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  margin-left: 1rem;
 }

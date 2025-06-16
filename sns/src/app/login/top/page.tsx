@@ -32,16 +32,6 @@ export default async function Page() {
                                 priority
                             />
                             <PostForm />
-                            <button className={styles["image-button"]}>
-                                <Image
-                                    src="/images/post.png"
-                                    width={58}
-                                    height={50}
-                                    alt="post-icon"
-                                    style={{ width: "58px", height: "50px", borderRadius: "10%" }}
-                                    priority
-                                />
-                            </button>
                         </div>
                     </div>
                     <div className={styles["post-item"]}>

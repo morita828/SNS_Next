@@ -61,6 +61,7 @@ export const authOptions: AuthOptions = {
 
   /* session */
   session: {
+    strategy: 'jwt',
     maxAge: 120 * 60,      // 120分（2時間）でセッションが無効に
     updateAge: 24 * 60 * 60,        // 24時間
     generateSessionToken: () => {

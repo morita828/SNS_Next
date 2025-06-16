@@ -19,7 +19,7 @@ model users {
   mail       String   @db.VarChar(255) @unique
   password   String   @db.VarChar(255)
   bio        String?  @db.VarChar(400)
-  images     String?  @db.VarChar(255)
+  images     String?  @db.VarChar(255) @default("icon1.png")
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 

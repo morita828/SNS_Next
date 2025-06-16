@@ -1,11 +1,11 @@
-import prisma from "../src/libs/prisma"; // Prisma クライアントのパスを適宜変更
+import prisma from "../src/libs/prisma";
 
 async function main() {
-  const newUser = await prisma.users.create({
+  await prisma.users.create({
     data: {
       username: "test_user",
       mail: "test@example.com",
-      password: "hashed_password", // 実際は bcrypt でハッシュ化する
+      password: "hashed_password",
       bio: "",
       images: "icon1.png",
     },

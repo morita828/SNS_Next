@@ -25,8 +25,8 @@ export async function POST(req: Request) {
         mail,
         password: hashedPassword,
         // bioやimagesは省略しても問題ない場合
-        bio: "",   // デフォルト値として空文字を設定
-        images: "" // デフォルト値として空文字を設定
+        bio: "",
+        images: "icon1.png"
       },
     });
 
