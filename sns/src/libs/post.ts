@@ -20,6 +20,20 @@ export const addPost = async (data: FormData) => {
 };
 
 /**
+ * 全ての投稿を取得（ユーザー情報を含む）
+ */
+export const getAllPosts = async () => {
+  return await prisma.posts.findMany({
+    include: {
+      user: true,
+    },
+    orderBy: {
+      created_at: "desc", // desc=最新順に並べる
+    },
+  });
+};
+
+/**
  * 指定されたIDの投稿を削除します。
  * @param {FormData} data - 'id' フィールドを含むフォームデータ
  */

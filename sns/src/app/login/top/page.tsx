@@ -5,8 +5,8 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
 import { redirect } from "next/navigation";
-
-import { Header, Button, PostForm } from "@/components";
+import { Header, Button, Post, PostForm } from "@/components";
+import prisma from "@/libs/prisma";
 
 
 export default async function Page() {
@@ -15,6 +15,15 @@ export default async function Page() {
     if (!session?.user?.id) {
         redirect("/logout/login");
     }
+
+    const posts = await prisma.posts.findMany({
+        orderBy: {
+            created_at: "desc",
+        },
+        include: {
+            user: true,
+        },
+    });
 
     return (
         <div>
@@ -34,19 +43,15 @@ export default async function Page() {
                             <PostForm />
                         </div>
                     </div>
-                    <div className={styles["post-item"]}>
-                        <Image
-                            src="/images/icon1.png"
-                            width={50}
-                            height={50}
-                            alt="icon"
-                            style={{ width: "50px", height: "50px" }}
-                            priority
-                        />
-                        <div className={styles["post-detail"]}>
-                            <p>ユーザー名</p>
-                            <p>自分が投稿した内容</p>
-                        </div>
+                    <div>
+                        {posts.map((post) => (
+                            <Post
+                                key={post.id}
+                                userIcon={`/images/${post.user.images}`}
+                                userName={post.user.username}
+                                content={post.post}
+                            />
+                        ))}
                     </div>
                 </div>
                 <div className={styles["side-bar"]}>

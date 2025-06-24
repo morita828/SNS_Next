@@ -3,19 +3,19 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 
 type PostProps = {
+  userIcon: string;
   userName: string;
-  content: string;
-  userIcon?: string;
+  content : string;
 };
 
-const Post: React.FC<PostProps> = ({ userName, content, userIcon = "/images/icon1.png" }) => {
+export const Post: React.FC<PostProps> = ({ userIcon, userName, content }) => {
   return (
     <div className={styles["post-item"]}>
       <Image
         src={userIcon}
         width={50}
         height={50}
-        alt="icon"
+        alt="user icon"
         style={{ width: "50px", height: "50px" }}
         priority
       />
