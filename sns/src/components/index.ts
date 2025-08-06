@@ -5,6 +5,8 @@ export { ImageButton } from "./image-button"
 export { Logout } from "./logout";
 export { Post } from "./post";
 export { PostForm } from "./post-form"
+export { PostList } from "./post-list"
 export { SectionTitle } from "./section-title";
+export { SideBar } from "./side-bar"
 export { SideMenu } from "./side-menu";
 export { TextField } from "./text-field";

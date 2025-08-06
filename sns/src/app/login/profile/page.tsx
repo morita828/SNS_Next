@@ -4,17 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
-import { redirect } from "next/navigation";
 
 import { Header, Button } from "@/components";
 
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
-
-    if (session?.user) {
-        redirect("/logout/login");
-    }
 
     return (
         <div>
@@ -31,8 +26,17 @@ export default async function Page() {
                                 style={{ width: "50px", height: "50px" }}
                                 priority
                             />
+                            <div>
+                                <h2>ユーザー名</h2>
+                                <h2>メールアドレス</h2>
+                                <h2>パスワード</h2>
+                                <h2>パスワード確認</h2>
+                                <h2>自己紹介</h2>
+                                <h2>アイコン画像</h2>
+                            </div>
                         </div>
                     </div>
+                    <Button>更新</Button>
                 </div>
                 <div className={styles["side-bar"]}>
                     <div className={styles.confirm}>

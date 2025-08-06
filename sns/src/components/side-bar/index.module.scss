@@ -1,0 +1,23 @@
+.side-bar {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 350px;
+  height: auto;
+}
+
+.confirm {
+  padding: 25px 0px 30px 20px;
+  border-bottom: 1px solid #cecece;
+}
+
+.section {
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+}
+
+.search-button {
+  text-align: center;
+  margin-top: 25px;
+}

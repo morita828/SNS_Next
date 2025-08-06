@@ -1,22 +1,24 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
+import { getUserById } from "@/libs/user";
 import { redirect } from "next/navigation";
-import { Header, Button, Post, PostForm } from "@/components";
+import { Header, PostForm, PostList, SideBar } from "@/components";
 import prisma from "@/libs/prisma";
 
+export const dynamic = 'force-dynamic'
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
+    const user = session?.user?.id ? await getUserById(session.user.id) : null;
 
     if (!session?.user?.id) {
         redirect("/logout/login");
     }
 
-    const posts = await prisma.posts.findMany({
+    const rawPosts = await prisma.posts.findMany({
         orderBy: {
             created_at: "desc",
         },
@@ -24,6 +26,11 @@ export default async function Page() {
             user: true,
         },
     });
+
+    const mappedPosts = rawPosts.map((post) => ({
+        ...post,
+        updated_at: post.updated_at.toISOString(),
+    }));
 
     return (
         <div>
@@ -44,40 +51,10 @@ export default async function Page() {
                         </div>
                     </div>
                     <div>
-                        {posts.map((post) => (
-                            <Post
-                                key={post.id}
-                                userIcon={`/images/${post.user.images}`}
-                                userName={post.user.username}
-                                content={post.post}
-                            />
-                        ))}
+                        <PostList posts={mappedPosts} />
                     </div>
                 </div>
-                <div className={styles["side-bar"]}>
-                    <div className={styles.confirm}>
-                        <p>〇〇さんの</p>
-                        <div className={styles.section}>
-                            <p>フォロー数</p>
-                            <p>〇〇人</p>
-                        </div>
-                        <Button color="blue">
-                            <Link href="/login/follow-list">フォローリスト</Link>
-                        </Button>
-                        <div className={styles.section}>
-                            <p>フォロワー数</p>
-                            <p>〇〇人</p>
-                        </div>
-                        <Button color="blue">
-                            <Link href="/login/follower-list">フォロワーリスト</Link>
-                        </Button>
-                    </div>
-                    <div className={styles["search-button"]}>
-                        <Button color="blue">
-                            <Link href="/login/search">ユーザー検索</Link>
-                        </Button>
-                    </div>
-                </div>
+                <SideBar />
             </div>
         </div>
     );
