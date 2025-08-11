@@ -1,0 +1,24 @@
+# Ignore artifacts:
+build
+coverage
+package.json
+package-lock.json
+yarn.lock
+# # config
+# tsconfig.json
+
+# # dotfile
+# .env*
+
+# # markdown
+# *.md
+
+# # next.js
+# /.next/
+# /out/
+
+# # production
+# /build
+
+# # yarn
+# /.yarn/

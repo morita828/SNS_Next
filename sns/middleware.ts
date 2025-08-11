@@ -12,7 +12,9 @@ export async function middleware(request: NextRequest) {
 
   const protectedPaths = ["/login"];
   const currentPath = request.nextUrl.pathname;
-  const isProtected = protectedPaths.some((path) => currentPath.startsWith(path));
+  const isProtected = protectedPaths.some((path) =>
+    currentPath.startsWith(path),
+  );
 
   if (isProtected && !isAuthenticated) {
     return NextResponse.redirect(new URL("/logout/login", request.url));

@@ -29,12 +29,12 @@ export default function Page() {
                 onChange={handleSearchChange}
               />
               <Image
-              src="/images/search.png"
-              width={50}
-              height={50}
-              alt="icon"
-              style={{ width: "50px", height: "50px", borderRadius: "5px" }}
-              priority
+                src="/images/search.png"
+                width={50}
+                height={50}
+                alt="icon"
+                style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+                priority
               />
               <h2>検索ワード：</h2>
             </div>

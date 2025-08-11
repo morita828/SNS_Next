@@ -7,13 +7,19 @@ export async function POST(req: NextRequest) {
     const { post, userId } = body;
 
     if (!post || !userId) {
-      return NextResponse.json({ error: "不正なリクエストです" }, { status: 400 });
+      return NextResponse.json(
+        { error: "不正なリクエストです" },
+        { status: 400 }
+      );
     }
 
     const created = await prisma.posts.create({
       data: {
         post,
         user_id: userId,
+      },
+      include: {
+        user: true,
       },
     });
 

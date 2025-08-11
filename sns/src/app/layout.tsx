@@ -8,15 +8,8 @@ type Props = {
 };
 
 export default function RootLayout({ children }: Props) {
-  return (
-    <SessionProvider>
-      {children}
-    </SessionProvider>
-  );
+  return <SessionProvider>{children}</SessionProvider>;
 }
-
-
-
 
 // export const metadata = {
 //   title: 'Next.js',

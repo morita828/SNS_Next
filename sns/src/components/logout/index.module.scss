@@ -1,4 +1,4 @@
-.global{
+.global {
   background: linear-gradient(to bottom, #1779d6 40%, #efde40);
   display: flex;
   flex-direction: column;
@@ -9,14 +9,14 @@
   margin: 0;
 }
 
-.logo{
+.logo {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
-  h2{
+  h2 {
     font-size: 40px;
     font-weight: bold;
     color: #fff;
@@ -24,13 +24,13 @@
   }
 }
 
-.img{
+.img {
   width: 180px;
   height: auto;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
-.wrapper{
+.wrapper {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.2);
   padding: 1em;
@@ -39,11 +39,11 @@
   text-align: center;
 }
 
-.wrapper form{
+.wrapper form {
   text-align: left;
 }
 
-.wrapper a{
+.wrapper a {
   color: #fff;
   display: inline-block;
   // margin: 2rem 0 1rem 0;

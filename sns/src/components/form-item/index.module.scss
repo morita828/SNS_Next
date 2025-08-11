@@ -3,7 +3,6 @@
   margin: 0 auto;
   font-size: 18px;
 
-
   &-name {
     //「&(section)」+「-name」= section-name
     color: #fff;
@@ -12,7 +11,7 @@
     margin-bottom: 0.3rem;
   }
 
-  &+& {
+  & + & {
     margin: 1.5rem auto;
   }
 }

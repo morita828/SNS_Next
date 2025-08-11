@@ -19,9 +19,7 @@ type Props = {
   posts: PostData[];
 };
 
-export const PostList: React.FC<Props> = ({posts}) => {
-  // const [posts, setPosts] = useState<PostData[]>(initialPosts);
-
+export const PostList: React.FC<Props> = ({ posts }) => {
   function formatDate(dateString: string | Date): string {
     const date = new Date(dateString);
 

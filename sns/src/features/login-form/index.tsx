@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components";
 
 export const LoginForm: React.FC = () => {
-  const { }  = useForm()
+  const {} = useForm();
   return (
     <form>
       <label>メールアドレス</label>
@@ -12,6 +12,6 @@ export const LoginForm: React.FC = () => {
       <label>パスワード</label>
       <input type="password" />
       <Button>ログイン</Button>
-  </form>
+    </form>
   );
-}
+};

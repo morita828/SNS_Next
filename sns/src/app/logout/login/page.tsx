@@ -4,7 +4,13 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { Logout, FormItem, SectionTitle, TextField, Button } from "@/components";
+import {
+  Logout,
+  FormItem,
+  SectionTitle,
+  TextField,
+  Button,
+} from "@/components";
 import styles from "./index.module.scss";
 
 export default function Page() {
@@ -13,7 +19,7 @@ export default function Page() {
     register,
     handleSubmit,
     setError,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const onSubmit = async (data: any) => {
@@ -42,7 +48,6 @@ export default function Page() {
 
       // ✅ ログイン成功 → /login/top に遷移
       router.push("/login/top");
-
     } catch (error) {
       console.error("ログインエラー:", error);
       alert("ログインに失敗しました。もう一度お試しください。");
@@ -77,7 +82,9 @@ export default function Page() {
               })}
             />
             {errors.password?.message && (
-              <p className={styles.error}>{errors.password.message as string}</p>
+              <p className={styles.error}>
+                {errors.password.message as string}
+              </p>
             )}
           </FormItem>
 

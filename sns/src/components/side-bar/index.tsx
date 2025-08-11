@@ -6,10 +6,9 @@ import { authOptions } from "@/libs/next-auth/authOptions";
 import { getUserById } from "@/libs/user";
 import { Button } from "@/components";
 
-
 type SideBarProps = {
   children?: React.ReactNode;
-}
+};
 
 export const SideBar = async ({ children }: SideBarProps) => {
   const session = await getServerSession(authOptions);
@@ -24,7 +23,7 @@ export const SideBar = async ({ children }: SideBarProps) => {
           <p>〇〇人</p>
         </div>
         <Link href="/login/follow-list">
-          <Button color="blue" >フォローリスト</Button>
+          <Button color="blue">フォローリスト</Button>
         </Link>
         <div className={styles.section}>
           <p>フォロワー数</p>

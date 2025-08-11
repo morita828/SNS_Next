@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 
 import { Header, Button } from "@/components";
 
-
 export default async function Page() {
   const session = await getServerSession(authOptions);
 

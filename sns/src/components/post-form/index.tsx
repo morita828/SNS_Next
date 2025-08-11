@@ -6,7 +6,25 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 
-export const PostForm = () => {
+type User = {
+  id: number;
+  username: string;
+  images: string | null;
+};
+
+type PostData = {
+  id: number;
+  user_id: number;
+  post: string;
+  user: User;
+  created_at: any;
+};
+
+type Props = {
+  handleCreate: (newPost: PostData) => void;
+};
+
+export const PostForm: React.FC<Props> = ({ handleCreate }) => {
   const { data: session } = useSession(); // ← セッションからユーザー取得
   const [text, setText] = useState("");
   const [error, setError] = useState("");
@@ -47,6 +65,9 @@ export const PostForm = () => {
       }
 
       setText(""); // 成功したら入力をクリア
+
+      const newPost = await res.json();
+      handleCreate(newPost);
     } catch (err) {
       console.error(err);
       setError("通信エラーが発生しました。");

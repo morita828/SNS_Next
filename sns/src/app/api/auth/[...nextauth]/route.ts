@@ -9,7 +9,7 @@ export const authOptions: AuthOptions = {
       name: "Credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) {
@@ -26,7 +26,10 @@ export const authOptions: AuthOptions = {
         }
 
         // bcryptでパスワード検証
-        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+        const isPasswordValid = await bcrypt.compare(
+          credentials.password,
+          user.password,
+        );
         if (!isPasswordValid) {
           throw new Error("パスワードが正しくありません");
         }
@@ -37,8 +40,8 @@ export const authOptions: AuthOptions = {
           name: user.username,
           email: user.mail,
         };
-      }
-    })
+      },
+    }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
@@ -59,7 +62,7 @@ export const authOptions: AuthOptions = {
         session.user.id = token.id as number;
       }
       return session;
-    }
+    },
   },
 };
 

@@ -9,10 +9,15 @@
   margin-left: 20px;
 }
 
-.updated-at {
+.created-at {
   position: absolute;
   top: 20px;
   right: 30px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: gray;
+}
+
+.delete-button {
+  width: 40px;
+  height: 40px;
 }

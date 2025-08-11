@@ -1,4 +1,4 @@
-'use server';
+"use server";
 import prisma from "@/libs/prisma";
 
 /**
@@ -37,7 +37,7 @@ export const getAllPosts = async () => {
  * 指定されたIDの投稿を削除します。
  */
 export const deletePost = async (data: FormData) => {
-  const id = Number(data.get('id'));
+  const id = Number(data.get("id"));
   if (!id) return;
 
   // データベースから1レコード削除

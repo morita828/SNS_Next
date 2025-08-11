@@ -12,7 +12,10 @@ export async function POST(req: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json({ error: "このメールアドレスは既に使用されています" }, { status: 400 });
+      return NextResponse.json(
+        { error: "このメールアドレスは既に使用されています" },
+        { status: 400 },
+      );
     }
 
     // パスワードをハッシュ化
@@ -26,7 +29,7 @@ export async function POST(req: Request) {
         password: hashedPassword,
         // bioやimagesは省略しても問題ない場合
         bio: "",
-        images: "icon1.png"
+        images: "icon1.png",
       },
     });
 
