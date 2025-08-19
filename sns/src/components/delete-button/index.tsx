@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./index.module.scss";
 import Image from "next/image";
 
@@ -12,9 +13,10 @@ type Props = {
 export const DeleteButton: React.FC<Props> = ({ postID, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleClick = async () => {
-    if (!window.confirm("本当に削除しますか？")) return;
+    if (!window.confirm("この投稿を削除します。よろしいでしょうか？")) return;
     setLoading(true);
 
     try {
@@ -28,6 +30,8 @@ export const DeleteButton: React.FC<Props> = ({ postID, onDelete }) => {
         console.error("削除に失敗しました");
         return;
       }
+
+      router.refresh();
 
       // 親コンポーネントに通知
       onDelete?.(postID);

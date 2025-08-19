@@ -29,6 +29,10 @@ export const PostManager: React.FC<Props> = ({ mappedPosts }) => {
     setPosts([newPost, ...posts]);
   };
 
+  const handleDelete = (id: number) => {
+    setPosts((prev) => prev.filter((post) => post.id !== id));
+  };
+
   return (
     <div className={styles.contents}>
       <div className={styles["wrapper"]}>
@@ -38,7 +42,7 @@ export const PostManager: React.FC<Props> = ({ mappedPosts }) => {
         </div>
       </div>
       <div>
-        <PostList posts={posts} />
+        <PostList posts={posts} onDelete={handleDelete} />
       </div>
     </div>
   );

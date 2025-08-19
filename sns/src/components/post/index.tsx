@@ -38,15 +38,6 @@ export const Post: React.FC<PostProps> = ({
         <p className={styles["created-at"]}>{createdAt}</p>
       </div>
       <div>
-        {/* <form action={deletePost}>
-          <input type="hidden" name="id" value={postID} />
-          <input
-            className={styles["delete-button"]}
-            type="image"
-            alt="削除ボタン"
-            src="/images/trash.png"
-          />
-        </form> */}
         <DeleteButton postID={postID} onDelete={onDelete} />
       </div>
     </div>
