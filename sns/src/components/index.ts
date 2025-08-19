@@ -1,4 +1,5 @@
 export { Button } from "./button";
+export { DeleteButton } from "./delete-button";
 export { FormItem } from "./form-item";
 export { Header } from "./header";
 export { ImageButton } from "./image-button";

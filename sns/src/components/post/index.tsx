@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import { deletePost } from "@/libs/post";
+import { DeleteButton } from "@/components";
 
 type PostProps = {
   postID: number;
@@ -9,6 +9,7 @@ type PostProps = {
   userName: string;
   content: string;
   createdAt: string;
+  onDelete?: (id: number) => void;
 };
 
 export const Post: React.FC<PostProps> = ({
@@ -17,6 +18,7 @@ export const Post: React.FC<PostProps> = ({
   userName,
   content,
   createdAt,
+  onDelete,
 }) => {
   return (
     <div className={styles["post-box"]}>
@@ -36,7 +38,7 @@ export const Post: React.FC<PostProps> = ({
         <p className={styles["created-at"]}>{createdAt}</p>
       </div>
       <div>
-        <form action={deletePost}>
+        {/* <form action={deletePost}>
           <input type="hidden" name="id" value={postID} />
           <input
             className={styles["delete-button"]}
@@ -44,7 +46,8 @@ export const Post: React.FC<PostProps> = ({
             alt="削除ボタン"
             src="/images/trash.png"
           />
-        </form>
+        </form> */}
+        <DeleteButton postID={postID} onDelete={onDelete} />
       </div>
     </div>
   );
