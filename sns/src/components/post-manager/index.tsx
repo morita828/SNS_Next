@@ -20,10 +20,15 @@ type PostData = {
 
 type Props = {
   mappedPosts: PostData[];
+  opened?: boolean;
 };
 
-export const PostManager: React.FC<Props> = ({ mappedPosts }) => {
+export const PostManager: React.FC<Props> = ({
+  mappedPosts,
+  opened = false,
+}) => {
   const [posts, setPosts] = useState<PostData[]>(mappedPosts);
+  const [isModalOpen, setIsModalOpen] = useState(opened);
 
   const handleCreate = (newPost: PostData) => {
     setPosts([newPost, ...posts]);
@@ -31,6 +36,11 @@ export const PostManager: React.FC<Props> = ({ mappedPosts }) => {
 
   const handleDelete = (id: number) => {
     setPosts((prev) => prev.filter((post) => post.id !== id));
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(!isModalOpen);
+    console.log(isModalOpen);
   };
 
   return (
@@ -42,7 +52,11 @@ export const PostManager: React.FC<Props> = ({ mappedPosts }) => {
         </div>
       </div>
       <div>
-        <PostList posts={posts} onDelete={handleDelete} />
+        <PostList
+          posts={posts}
+          onDelete={handleDelete}
+          onModalOpen={handleModalOpen}
+        />
       </div>
     </div>
   );

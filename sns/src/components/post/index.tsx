@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import { DeleteButton } from "@/components";
+import { DeleteButton, EditButton } from "@/components";
 
 type PostProps = {
   postID: number;
@@ -10,6 +10,7 @@ type PostProps = {
   content: string;
   createdAt: string;
   onDelete?: (id: number) => void;
+  onModalOpen: () => void;
 };
 
 export const Post: React.FC<PostProps> = ({
@@ -19,6 +20,7 @@ export const Post: React.FC<PostProps> = ({
   content,
   createdAt,
   onDelete,
+  onModalOpen,
 }) => {
   return (
     <div className={styles["post-box"]}>
@@ -38,6 +40,7 @@ export const Post: React.FC<PostProps> = ({
         <p className={styles["created-at"]}>{createdAt}</p>
       </div>
       <div>
+        <EditButton onModalOpen={onModalOpen} />
         <DeleteButton postID={postID} onDelete={onDelete} />
       </div>
     </div>

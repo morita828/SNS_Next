@@ -18,9 +18,10 @@ type PostData = {
 type Props = {
   posts: PostData[];
   onDelete: (id: number) => void;
+  onModalOpen: () => void;
 };
 
-export const PostList: React.FC<Props> = ({ posts, onDelete }) => {
+export const PostList: React.FC<Props> = ({ posts, onDelete, onModalOpen }) => {
   function formatDate(dateString: string | Date): string {
     const date = new Date(dateString);
 
@@ -45,6 +46,7 @@ export const PostList: React.FC<Props> = ({ posts, onDelete }) => {
           content={post.post}
           createdAt={formatDate(post.created_at)}
           onDelete={onDelete}
+          onModalOpen={onModalOpen}
         />
       ))}
     </div>

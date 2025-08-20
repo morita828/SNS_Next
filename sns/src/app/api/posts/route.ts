@@ -52,3 +52,28 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ error: "削除に失敗しました" }, { status: 500 });
   }
 }
+
+export async function UPDATE(req: NextRequest) {
+  try {
+    const body = await req.json();
+    const { id, post } = body;
+
+    if (!id || !post) {
+      return NextResponse.json(
+        { error: "不正なリクエストです" },
+        { status: 400 }
+      );
+    }
+
+    // DB の該当レコードを更新
+    const updated = await prisma.posts.update({
+      where: { id },
+      data: { post },
+    });
+
+    return NextResponse.json(updated, { status: 200 });
+  } catch (err) {
+    console.error("更新エラー:", err);
+    return NextResponse.json({ error: "更新に失敗しました" }, { status: 500 });
+  }
+}
