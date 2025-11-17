@@ -3,9 +3,7 @@
 import { useState } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import Link from "next/link";
-
-import { Header, Button } from "@/components";
+import { Header, SideBar } from "@/components";
 
 export default function Page() {
   const [search, setSearch] = useState("");
@@ -51,30 +49,7 @@ export default function Page() {
             <p>ユーザー名</p>
           </div>
         </div>
-        <div className={styles["side-bar"]}>
-          <div className={styles.confirm}>
-            <p>〇〇さんの</p>
-            <div className={styles.section}>
-              <p>フォロー数</p>
-              <p>〇〇人</p>
-            </div>
-            <Button color="blue">
-              <Link href="/login/follow-list">フォローリスト</Link>
-            </Button>
-            <div className={styles.section}>
-              <p>フォロワー数</p>
-              <p>〇〇人</p>
-            </div>
-            <Button color="blue">
-              <Link href="/login/follower-list">フォロワーリスト</Link>
-            </Button>
-          </div>
-          <div className={styles["search-button"]}>
-            <Button color="blue">
-              <Link href="/login/search">ユーザー検索</Link>
-            </Button>
-          </div>
-        </div>
+        <SideBar />
       </div>
     </div>
   );

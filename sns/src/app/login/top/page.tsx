@@ -29,6 +29,10 @@ export default async function Page() {
   const mappedPosts = rawPosts.map((post) => ({
     ...post,
     updated_at: post.updated_at.toISOString(),
+    user: {
+      ...post.user,
+      images: post.user.images ?? "",
+    },
   }));
 
   return (

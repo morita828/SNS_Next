@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
 import { redirect } from "next/navigation";
 
-import { Header, Button } from "@/components";
+import { Header, SideBar } from "@/components";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
@@ -46,30 +45,7 @@ export default async function Page() {
             </div>
           </div>
         </div>
-        <div className={styles["side-bar"]}>
-          <div className={styles.confirm}>
-            <p>〇〇さんの</p>
-            <div className={styles.section}>
-              <p>フォロー数</p>
-              <p>〇〇人</p>
-            </div>
-            <Button color="blue">
-              <Link href="/login/follow-list">フォローリスト</Link>
-            </Button>
-            <div className={styles.section}>
-              <p>フォロワー数</p>
-              <p>〇〇人</p>
-            </div>
-            <Button color="blue">
-              <Link href="/login/follower-list">フォロワーリスト</Link>
-            </Button>
-          </div>
-          <div className={styles["search-button"]}>
-            <Button color="blue">
-              <Link href="/login/search">ユーザー検索</Link>
-            </Button>
-          </div>
-        </div>
+        <SideBar />
       </div>
     </div>
   );

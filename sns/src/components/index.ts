@@ -5,6 +5,7 @@ export { EditForm } from "./edit-form";
 export { FormItem } from "./form-item";
 export { Header } from "./header";
 export { ImageButton } from "./image-button";
+export { LinkButton } from "./LinkButton";
 export { Logout } from "./logout";
 export { Post } from "./post";
 export { PostForm } from "./post-form";

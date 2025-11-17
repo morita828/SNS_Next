@@ -1,10 +1,9 @@
 import React from "react";
-import Link from "next/link";
 import styles from "./index.module.scss";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
 import { getUserById } from "@/libs/user";
-import { Button } from "@/components";
+import { LinkButton } from "@/components";
 
 type SideBarProps = {
   children?: React.ReactNode;
@@ -22,21 +21,21 @@ export const SideBar = async ({ children }: SideBarProps) => {
           <p>フォロー数</p>
           <p>〇〇人</p>
         </div>
-        <Link href="/login/follow-list">
-          <Button color="blue">フォローリスト</Button>
-        </Link>
+        <LinkButton href="/login/follow-list" color="blue">
+          フォローリスト
+        </LinkButton>
         <div className={styles.section}>
           <p>フォロワー数</p>
           <p>〇〇人</p>
         </div>
-        <Link href="/login/follower-list">
-          <Button color="blue">フォロワーリスト</Button>
-        </Link>
+        <LinkButton href="/login/follower-list" color="blue">
+          フォロワーリスト
+        </LinkButton>
       </div>
       <div className={styles["search-button"]}>
-        <Link href="/login/search">
-          <Button color="blue">ユーザー検索</Button>
-        </Link>
+        <LinkButton href="/login/search" color="blue">
+          ユーザー検索
+        </LinkButton>
       </div>
     </div>
   );

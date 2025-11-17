@@ -1,8 +1,9 @@
 .side-bar {
-  flex: 0 0 auto;
+  flex: 0 0 350px;
   margin-left: auto;
-  width: 350px;
-  height: auto;
+  border-left: 1px solid black;
+  overflow-y: auto;
+  align-self: stretch;
 }
 
 .confirm {
