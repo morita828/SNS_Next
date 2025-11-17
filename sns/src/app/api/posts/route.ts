@@ -53,7 +53,7 @@ export async function DELETE(req: NextRequest) {
   }
 }
 
-export async function UPDATE(req: NextRequest) {
+export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
     const { id, post } = body;
@@ -69,6 +69,7 @@ export async function UPDATE(req: NextRequest) {
     const updated = await prisma.posts.update({
       where: { id },
       data: { post },
+      include: { user: true },
     });
 
     return NextResponse.json(updated, { status: 200 });

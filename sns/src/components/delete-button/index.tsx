@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./index.module.scss";
 import Image from "next/image";
 
 type Props = {
@@ -48,11 +47,10 @@ export const DeleteButton: React.FC<Props> = ({ postID, onDelete }) => {
       {/* 削除ボタン */}
       <button onClick={handleClick}>
         <Image
-          className={styles["delete-button"]}
           alt="削除ボタン"
           src="/images/trash.png"
-          width={24}
-          height={24}
+          width={40}
+          height={40}
         />
       </button>
     </>

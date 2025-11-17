@@ -7,7 +7,7 @@ import { PostForm, PostList } from "@/components";
 type User = {
   id: number;
   username: string;
-  images: string | null;
+  images: string;
 };
 
 type PostData = {
@@ -40,7 +40,12 @@ export const PostManager: React.FC<Props> = ({
 
   const handleModalOpen = () => {
     setIsModalOpen(!isModalOpen);
-    console.log(isModalOpen);
+  };
+
+  const handleUpdate = (updatedPost: PostData) => {
+    setPosts((posts) =>
+      posts.map((p) => (p.id === updatedPost.id ? updatedPost : p))
+    );
   };
 
   return (
@@ -56,6 +61,7 @@ export const PostManager: React.FC<Props> = ({
           posts={posts}
           onDelete={handleDelete}
           onModalOpen={handleModalOpen}
+          onUpdate={handleUpdate}
         />
       </div>
     </div>

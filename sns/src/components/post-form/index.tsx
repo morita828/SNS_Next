@@ -9,7 +9,7 @@ import Image from "next/image";
 type User = {
   id: number;
   username: string;
-  images: string | null;
+  images: string;
 };
 
 type PostData = {
