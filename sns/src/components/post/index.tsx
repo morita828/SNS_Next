@@ -19,12 +19,20 @@ type PostData = {
 
 type PostProps = {
   post: PostData;
+  currentUserId: number | null;
   onDelete?: (id: number) => void;
   onModalOpen: () => void;
   onUpdate: (updatedPost: PostData) => void;
 };
 
-export const Post: React.FC<PostProps> = ({ post, onDelete, onUpdate }) => {
+export const Post: React.FC<PostProps> = ({
+  post,
+  currentUserId,
+  onDelete,
+  onUpdate,
+}) => {
+  const isMyPost = post.user_id === currentUserId;
+
   function formatDate(dateString: string | Date): string {
     const date = new Date(dateString);
 
@@ -57,10 +65,12 @@ export const Post: React.FC<PostProps> = ({ post, onDelete, onUpdate }) => {
           <p className={styles["created-at"]}>{formatDate(post.created_at)}</p>
         </div>
       </div>
-      <div className={styles["post-actions"]}>
-        <EditButton onUpdate={onUpdate} post={post} />
-        <DeleteButton postID={post.id} onDelete={onDelete} />
-      </div>
+      {isMyPost && (
+        <div className={styles["post-actions"]}>
+          <EditButton onUpdate={onUpdate} post={post} />
+          <DeleteButton postID={post.id} onDelete={onDelete} />
+        </div>
+      )}
     </div>
   );
 };
