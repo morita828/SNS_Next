@@ -10,6 +10,11 @@ import { SideMenu } from "@/components";
 export const Header = async () => {
   const session = await getServerSession(authOptions);
   const user = session?.user?.id ? await getUserById(session.user.id) : null;
+  const imageSrc = user?.images
+    ? user.images.startsWith("/")
+      ? user.images
+      : `/images/${user.images}`
+    : "/images/default-icon.png";
 
   return (
     <header className={styles.header}>
@@ -25,15 +30,10 @@ export const Header = async () => {
       </Link>
       <div className={styles.nav}>
         <div className={styles.users}>
-          <p>{user?.username}さん</p>
+          <p>{user?.username}</p>
+          <p>さん</p>
           <SideMenu />
-          <Image
-            src="/images/icon1.png"
-            width={55}
-            height={55}
-            alt="icon"
-            priority
-          />
+          <Image src={imageSrc} width={55} height={55} alt="icon" priority />
         </div>
       </div>
     </header>

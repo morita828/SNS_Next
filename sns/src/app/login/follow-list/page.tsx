@@ -3,17 +3,24 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
+import { getUserById } from "@/libs/user";
 import { redirect } from "next/navigation";
-
 import { Header, SideBar } from "@/components";
+import prisma from "@/libs/prisma";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
+  const user = session?.user?.id ? await getUserById(session.user.id) : null;
 
   if (!session?.user?.id) {
     redirect("/logout/login");
   }
 
+  const rawUsers = await prisma.users.findMany({
+    include: {
+      following: true,
+    },
+  });
   return (
     <div>
       <Header />

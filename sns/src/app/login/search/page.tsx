@@ -1,54 +1,51 @@
-"use client";
-
-import { useState } from "react";
+import React from "react";
 import styles from "./index.module.scss";
-import Image from "next/image";
-import { Header, SideBar } from "@/components";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/libs/next-auth/authOptions";
+import { getUserById } from "@/libs/user";
+import { redirect } from "next/navigation";
+import { Header, SideBar, Search } from "@/components";
+import prisma from "@/libs/prisma";
 
-export default function Page() {
-  const [search, setSearch] = useState("");
+type User = {
+  id: string;
+  username: string;
+  images: string;
+};
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  const user = session?.user?.id ? await getUserById(session.user.id) : null;
+
+  if (!session?.user?.id) {
+    redirect("/logout/login");
+  }
+
+  const loginUserId = session.user.id;
+
+  const rawUsers = await prisma.users.findMany({
+    orderBy: {
+      created_at: "desc",
+    },
+    where: {
+      id: { not: loginUserId },
+    },
+  });
+
+  const mappedUsers: User[] = rawUsers.map((user) => ({
+    id: user.id.toString(), // number → string に変換
+    username: user.username,
+    images: user.images ?? "", // null の場合は空文字
+  }));
 
   return (
     <div>
       <Header />
       <div className={styles.row}>
-        <div className={styles.contents}>
-          <div className={styles.wrapper}>
-            <div className={styles.inner}>
-              <input
-                type="text"
-                className={styles.searchBox}
-                placeholder="ユーザー名"
-                value={search}
-                onChange={handleSearchChange}
-              />
-              <Image
-                src="/images/search.png"
-                width={50}
-                height={50}
-                alt="icon"
-                style={{ width: "50px", height: "50px", borderRadius: "5px" }}
-                priority
-              />
-              <h2>検索ワード：</h2>
-            </div>
-          </div>
-          <div className={styles["post-item"]}>
-            <Image
-              src="/images/icon1.png"
-              width={50}
-              height={50}
-              alt="icon"
-              style={{ width: "50px", height: "50px" }}
-              priority
-            />
-            <p>ユーザー名</p>
-          </div>
-        </div>
+        <Search
+          mappedUsers={mappedUsers}
+          loginUserId={loginUserId.toString()}
+        />
         <SideBar />
       </div>
     </div>

@@ -72,7 +72,7 @@ export const EditForm: React.FC<Props> = ({ post, onUpdate, onClose }) => {
               onChange={(e) => setText(e.target.value)}
               maxLength={150}
             />
-            <button type="submit">
+            <button type="submit" className={styles["edit-button"]}>
               <Image
                 src="/images/edit.png"
                 width={40}

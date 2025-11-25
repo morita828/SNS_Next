@@ -1,5 +1,4 @@
 .header {
-  width: 100vw; //vw：画面（viewport）の幅に対する範囲を指定。親要素は関係ない。
   height: 100px;
   background-color: #0067c6;
   position: relative;
@@ -17,14 +16,11 @@
 .users {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
+  margin-right: 40px;
 
   p {
     color: #fff;
-  }
-
-  img {
-    margin-right: 30px;
   }
 }
 

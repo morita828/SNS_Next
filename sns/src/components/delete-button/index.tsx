@@ -13,6 +13,7 @@ export const DeleteButton: React.FC<Props> = ({ postID, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [isHover, setIsHover] = useState(false);
 
   const handleClick = async () => {
     if (!window.confirm("この投稿を削除します。よろしいでしょうか？")) return;
@@ -48,9 +49,10 @@ export const DeleteButton: React.FC<Props> = ({ postID, onDelete }) => {
       <button onClick={handleClick}>
         <Image
           alt="削除ボタン"
-          src="/images/trash.png"
+          src={isHover ? "/images/trash-h.png" : "/images/trash.png"}
           width={40}
           height={40}
+          unoptimized
         />
       </button>
     </>

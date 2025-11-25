@@ -11,6 +11,7 @@ export { Post } from "./post";
 export { PostForm } from "./post-form";
 export { PostList } from "./post-list";
 export { PostManager } from "./post-manager";
+export { Search } from "./search";
 export { SectionTitle } from "./section-title";
 export { SideBar } from "./side-bar";
 export { SideMenu } from "./side-menu";
