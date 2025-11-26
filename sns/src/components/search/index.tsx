@@ -19,6 +19,7 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
   const [users, setUsers] = useState<User[]>(mappedUsers);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const [keyword, setKeyword] = useState("");
 
   // 初期ユーザー情報取得
   useEffect(() => {
@@ -62,6 +63,7 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
 
       const data: User[] = await res.json();
       setUsers(data);
+      setKeyword(keyword);
     } catch (err) {
       console.error("検索中にエラーが発生しました", err);
     } finally {
@@ -107,9 +109,7 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
             />
           </button>
         </form>
-        <div>
-          <p>検索ワード：</p>
-        </div>
+        {keyword && <p className={styles.keyword}>検索ワード：{keyword}</p>}
       </div>
       <div className={styles.results}>
         {users.map((user) => (
