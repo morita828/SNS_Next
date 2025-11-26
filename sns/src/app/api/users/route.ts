@@ -10,20 +10,26 @@ export async function GET(req: NextRequest) {
     ? Number(loggedInUserId)
     : undefined;
 
-  const where: any = {};
+  const where: any = {
+    id: {
+      not: loggedInUserIdNumber, // ログインユーザーを除外
+    },
+  };
 
-  if (keyword && keyword !== "") {
-    // 部分一致検索（大文字小文字を無視）
-    where.username = { contains: keyword, mode: "insensitive" };
+  if (keyword !== "") {
+    where.username = {
+      contains: keyword, // Prisma 5.21: mode は使えない
+    };
   }
+
+  // if (keyword && keyword !== "") {
+  //   // 部分一致検索（大文字小文字を無視）
+  //   where.username = { contains: keyword, mode: "insensitive" };
+  // }
 
   // ユーザー名に部分一致するユーザーを取得
   const users = await prisma.users.findMany({
-    where: {
-      id: {
-        not: loggedInUserIdNumber, // ログインユーザーを除外
-      },
-    },
+    where,
     orderBy: {
       created_at: "desc",
     },

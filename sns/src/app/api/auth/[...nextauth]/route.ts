@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
         // bcryptでパスワード検証
         const isPasswordValid = await bcrypt.compare(
           credentials.password,
-          user.password,
+          user.password
         );
         if (!isPasswordValid) {
           throw new Error("パスワードが正しくありません");
@@ -39,6 +39,7 @@ export const authOptions: AuthOptions = {
           id: user.id,
           name: user.username,
           email: user.mail,
+          image: user.images as string | undefined,
         };
       },
     }),
@@ -52,6 +53,7 @@ export const authOptions: AuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.image = user.image;
       }
       return token;
     },
@@ -60,6 +62,7 @@ export const authOptions: AuthOptions = {
       if (token?.id) {
         session.user = session.user ?? {};
         session.user.id = token.id as number;
+        session.user.image = token.image as string | undefined;
       }
       return session;
     },

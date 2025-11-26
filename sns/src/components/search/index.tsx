@@ -20,7 +20,9 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
 
+  // 初期ユーザー情報取得
   useEffect(() => {
+    if (!loginUserId) return;
     const fetchInitialUsers = async () => {
       setLoading(true);
       try {
@@ -42,6 +44,7 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
     fetchInitialUsers();
   }, [loginUserId]);
 
+  // 検索処理
   const handleSearch = async (keyword: string) => {
     setLoading(true);
 
@@ -72,14 +75,20 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
   };
 
   // ボタン押下（または Enter 押下など）で検索をトリガー
-  const handleClickSearch = () => {
+  const handleClickSearch = async () => {
+    await handleSearch(search);
+    setSearch("");
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // ページ遷移を防ぐ
     handleSearch(search);
   };
 
   return (
     <div className={styles.contents}>
       <div className={styles.wrapper}>
-        <div className={styles.inner}>
+        <form onSubmit={handleSubmit} className={styles.inner}>
           <input
             type="text"
             className={styles.searchBox}
@@ -87,16 +96,19 @@ export const Search: React.FC<Props> = ({ mappedUsers, loginUserId }) => {
             value={search}
             onChange={handleChange}
           />
-          <button onClick={handleClickSearch}>
+          <button type="button" onClick={handleClickSearch}>
             <Image
               src="/images/search.png"
               width={50}
               height={50}
               alt="icon"
-              style={{ width: "50px", height: "50px", borderRadius: "5px" }}
+              style={{ width: "60px", height: "50px", borderRadius: "5px" }}
               priority
             />
           </button>
+        </form>
+        <div>
+          <p>検索ワード：</p>
         </div>
       </div>
       <div className={styles.results}>

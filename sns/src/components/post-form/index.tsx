@@ -29,6 +29,10 @@ export const PostForm: React.FC<Props> = ({ handleCreate }) => {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
 
+  const imagePath = session?.user?.image
+    ? `/images/${session.user.image}`
+    : "/images/default.png";
+
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
     if (e.target.value.length > 0) setError("");
@@ -75,27 +79,37 @@ export const PostForm: React.FC<Props> = ({ handleCreate }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
-      <div className={styles.inputArea}>
-        <textarea
-          className={styles.textarea}
-          placeholder="投稿内容を入力してください。"
-          value={text}
-          onChange={handleChange}
-          maxLength={150}
-        />
-        <button className={styles["image-button"]}>
-          <Image
-            src="/images/post.png"
-            width={25}
-            height={25}
-            alt="post-icon"
-            style={{ width: "50px", borderRadius: "10%" }}
-            priority
+    <div className={styles["inner"]}>
+      <Image
+        src={imagePath}
+        alt="user icon"
+        width={50}
+        height={50}
+        style={{ width: "50px", height: "50px" }}
+        priority
+      />
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <div className={styles.inputArea}>
+          <textarea
+            className={styles.textarea}
+            placeholder="投稿内容を入力してください。"
+            value={text}
+            onChange={handleChange}
+            maxLength={150}
           />
-        </button>
-      </div>
-      {error && <p className={styles.error}>{error}</p>}
-    </form>
+          <button className={styles["image-button"]}>
+            <Image
+              src="/images/post.png"
+              width={25}
+              height={25}
+              alt="post-icon"
+              style={{ width: "50px", borderRadius: "10%" }}
+              priority
+            />
+          </button>
+        </div>
+        {error && <p className={styles.error}>{error}</p>}
+      </form>
+    </div>
   );
 };

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./index.module.scss";
-import Image from "next/image";
 import { PostForm, PostList } from "@/components";
 
 type User = {
@@ -52,17 +51,7 @@ export const PostManager: React.FC<Props> = ({
   return (
     <div className={styles.contents}>
       <div className={styles["wrapper"]}>
-        <div className={styles["inner"]}>
-          <Image
-            src="/images/icon1.png"
-            alt="user icon"
-            width={50}
-            height={50}
-            style={{ width: "50px", height: "50px" }}
-            priority
-          />
-          <PostForm handleCreate={handleCreate} />
-        </div>
+        <PostForm handleCreate={handleCreate} />
       </div>
       <div>
         <PostList

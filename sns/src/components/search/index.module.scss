@@ -6,18 +6,20 @@
   border-bottom: 10px solid #e0e0e0;
   display: flex;
   padding: 50px 0 50px 0;
+  align-items: center;
 }
 
 .inner {
   display: flex;
   margin-left: 90px;
-  width: 75%;
+  width: 50%;
+  gap: 15px;
 }
 
 //検索ボックス
 .searchBox {
-  width: 100%;
-  max-width: 400px;
+  width: 55%;
+  // max-width: 350px;
   padding: 10px;
   font-size: 20px;
   border: 2px solid #ccc;
@@ -37,6 +39,7 @@
 .post-item {
   display: flex;
   padding: 20px 20px 20px 150px;
+  align-items: center;
 }
 
 .post-detail {
