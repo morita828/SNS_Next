@@ -3,11 +3,17 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/libs/next-auth/authOptions";
-
+import { getUserById } from "@/libs/user";
 import { Header, SideBar, Button } from "@/components";
 
 export default async function Page() {
   const session = await getServerSession(authOptions);
+  const user = session?.user?.id ? await getUserById(session.user.id) : null;
+  const imageSrc = user?.images
+    ? user.images.startsWith("/")
+      ? user.images
+      : `/images/${user.images}`
+    : "/images/default-icon.png";
 
   return (
     <div>
@@ -18,15 +24,14 @@ export default async function Page() {
             <div className={styles["inner"]}>
               <div>
                 <Image
-                  src="/images/icon1.png"
+                  src={imageSrc}
                   width={50}
                   height={50}
                   alt="icon"
-                  style={{ width: "50px", height: "50px" }}
                   priority
                 />
               </div>
-              <div>
+              <div className={styles["profile-item"]}>
                 <h2>ユーザー名</h2>
                 <h2>メールアドレス</h2>
                 <h2>パスワード</h2>
@@ -36,7 +41,9 @@ export default async function Page() {
               </div>
             </div>
           </div>
-          <Button>更新</Button>
+          <div className={styles["button-wrapper"]}>
+            <Button>更新</Button>
+          </div>
         </div>
         <SideBar />
       </div>

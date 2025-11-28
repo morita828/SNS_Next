@@ -17,20 +17,28 @@ export const SideBar = async ({ children }: SideBarProps) => {
     <div className={styles["side-bar"]}>
       <div className={styles.confirm}>
         <p>{user?.username}さんの</p>
-        <div className={styles.section}>
-          <p>フォロー数</p>
-          <p>〇〇人</p>
+        <div className={styles.content}>
+          <div className={styles.section}>
+            <p>フォロー数</p>
+            <p>〇〇人</p>
+          </div>
+          <div className={styles.wrapper}>
+            <LinkButton href="/login/follow-list" color="blue">
+              フォローリスト
+            </LinkButton>
+          </div>
         </div>
-        <LinkButton href="/login/follow-list" color="blue">
-          フォローリスト
-        </LinkButton>
-        <div className={styles.section}>
-          <p>フォロワー数</p>
-          <p>〇〇人</p>
+        <div className={styles.content}>
+          <div className={styles.section}>
+            <p>フォロワー数</p>
+            <p>〇〇人</p>
+          </div>
+          <div className={styles.wrapper}>
+            <LinkButton href="/login/follower-list" color="blue">
+              フォロワーリスト
+            </LinkButton>
+          </div>
         </div>
-        <LinkButton href="/login/follower-list" color="blue">
-          フォロワーリスト
-        </LinkButton>
       </div>
       <div className={styles["search-button"]}>
         <LinkButton href="/login/search" color="blue">

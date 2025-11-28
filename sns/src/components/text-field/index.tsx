@@ -1,27 +1,29 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, InputHTMLAttributes } from "react";
 import styles from "./index.module.scss";
 
-type TextFieldProps = {
+// HTMLInputElement に対する標準の input props をすべて受け取れるようにする
+type TextFieldProps = InputHTMLAttributes<HTMLInputElement> & {
   type?: "text" | "email" | "url" | "search" | "password";
-  value?: string;
-  placeholder?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
+// type TextFieldProps = {
+//   type?: "text" | "email" | "url" | "search" | "password";
+//   value?: string;
+//   placeholder?: string;
+//   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+// };
+
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ type = "text", value, placeholder, onChange, ...props }, ref) => {
+  ({ type = "text", className, ...props }, ref) => {
     return (
       <input
-        ref={ref} //inputタグ要素をコンポーネント側に渡す
+        ref={ref}
         type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
         className={styles.textField}
-        {...props}
+        {...props} // onChange, onBlur, name なども spread で適用
       />
     );
-  },
+  }
 );
 // displayNameを設定
 TextField.displayName = "TextField";

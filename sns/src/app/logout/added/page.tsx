@@ -30,9 +30,11 @@ export default function Page() {
           <p>ユーザー登録が完了いたしました。</p>
           <p>早速ログインをしてみましょう！</p>
         </div>
-        <Button>
-          <Link href="/logout/login">ログイン画面へ</Link>
-        </Button>
+        <div className={styles["button-wrapper"]}>
+          <Button>
+            <Link href="/logout/login">ログイン画面へ</Link>
+          </Button>
+        </div>
       </div>
     </Logout>
   );
